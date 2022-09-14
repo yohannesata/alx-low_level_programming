@@ -3,8 +3,7 @@
 
 
 /**
- *
- * main - print alphabetical order in lowercase
+ * print\-alphabet -> prints alphabetical order in lowercase
  *
  *
  *
