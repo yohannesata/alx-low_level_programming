@@ -1,9 +1,7 @@
 #include "main.h"
 
-
-
 /**
- * print\-alphabet -> prints alphabetical order in lowercase
+ * print_alphabet -> prints alphabetical order in lowercase
  */
 void print_alphabet(void)
 
