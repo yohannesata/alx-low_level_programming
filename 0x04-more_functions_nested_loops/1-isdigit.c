@@ -1,8 +1,8 @@
 #include "main.h"
 
 /**
- * main - check the code
- * @c: _isdigit prints only numbers
+ * _isdigit prints only numbers
+ * @c: checks the number
  *
  * Return: Always 0.
  */
@@ -13,5 +13,6 @@ int _isdigit(int c)
 	{
 		return (1);
 	}
+
 	return (0);
 }
