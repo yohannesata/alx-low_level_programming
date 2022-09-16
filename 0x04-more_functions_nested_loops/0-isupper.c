@@ -7,7 +7,7 @@
  * Return: 1 if true else 0.
 */
 
-int _isupper(int c)8
+int _isupper(int c)
 {
 	if (c >= 65 && c <= 90)
 	{
