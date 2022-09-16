@@ -1,5 +1,6 @@
-#ifndef _MAIN_H_                                                                                                                     
-#define _MAIN_H_
+#ifndef _MAIN_H_INCLUDED
+
+#define _MAIN_H_INCLUDED
 
 /**
  *main - header file for prototypes
