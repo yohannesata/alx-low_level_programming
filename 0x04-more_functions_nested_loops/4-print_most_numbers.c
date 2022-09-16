@@ -1,6 +1,7 @@
 #include "main.h"
 
-/*print\-most_numbers - prints only selected numbers
+/*
+ * print\-most_numbers - prints only selected numbers
  *
  * Returns 1 upto 9 numbers except 2 and 4
  */
