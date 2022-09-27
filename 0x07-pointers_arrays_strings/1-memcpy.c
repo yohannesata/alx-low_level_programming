@@ -4,39 +4,35 @@
 
 /**
 
- * _memcpy - Copies @n bytes from the memory area pointed
+ * _memcpy - fnct to copy memory content source to a char destination .
 
- *           to by @src into that pointed to by @dest.
+ * @dest: memory allocation of the destination
 
- * @dest: A pointer to the memory area to copy @src into.
+ * @src: memory content to copy from the src
 
- * @src: The source buffer to copy characters from.
-
- * @n: The number of bytes to copy from @src.
+ * @n: content in byte to copy
 
  *
 
- * Return: A pointer to the destination buffer @dest.
+ * Return: pointer to dest
 
  */
 
-void *_memcpy(void *dest, const void *src, size_t n)
+char *_memcpy(char *dest, char *src, unsigned int n)
 
 {
 
-	unsigned int index;
-
-	unsigned char *destination = dest;
-
-	const unsigned char *source = src;
+	unsigned int i;
 
 
 
-	for (index = 0; index < n; index++)
+	for (i = 0; i < n; i++)
 
-		destination[index] = source[index];
+	{
 
+		*(dest + i) = *(src + i);
 
+	}
 
 	return (dest);
 
