@@ -1,7 +1,5 @@
 #include "main.h"
 
-
-
 /**
 
  * _memcpy - fnct to copy memory content source to a char destination .
