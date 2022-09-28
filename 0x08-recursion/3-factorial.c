@@ -2,7 +2,7 @@
 
 /**
  * factorial - factorial of given number.
- * #n: any given number:
+ * @n: any given number:
  */
 
 int factorial(int n)
@@ -16,5 +16,5 @@ int factorial(int n)
 		return (1);
 	}
 	else
-		return (n * factorial(n-1));
+		return (n * factorial(n - 1));
 }
