@@ -17,12 +17,11 @@ unsigned int i;
 if (size == 0)
 	return (NULL);
 pointer = malloc(sizeof(char) * size);
+
 if (pointer == NULL)
 	return (NULL);
-else
-{
+
 	for (i = 0; i < size; i++)
 		pointer[i] = c;
 		return (pointer);
-}
 }
