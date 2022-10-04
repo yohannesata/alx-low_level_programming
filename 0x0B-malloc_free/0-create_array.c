@@ -2,9 +2,8 @@
 #include <stdlib.h>
 
 /**
- * create_array - a program that creates a dynamic memory allocation
- * filled with a specific character c .
- * @size : size of an array.
+ * create_array -  creates a dynamic memory allocation
+ * @size : the size of an array.
  * @c: character.
  * Return: pointer to the Array or NULL if it fails.
  */
