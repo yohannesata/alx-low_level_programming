@@ -5,8 +5,7 @@
  * string_nconcat - Concatenates two strings 
  * @s1: first string.
  * @s2: second string.
- * @n:  maximum number of bytes of s2 to concatenate to s1.
- *
+ * @n:  maximum number of bytes of s2 to concatenate to s
  * Return: If the function fails - NULL.
  *         Otherwise - a pointer to the concatenated space in memory.
  */
