@@ -13,6 +13,7 @@ int op_sub(int a, int b);
  * @b: second number to be added
  */
 
+int op_add(int a, int b)
 {
 	return (a - b);
 }
