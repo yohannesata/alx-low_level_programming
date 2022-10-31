@@ -1,69 +1,81 @@
-#include <stdio.h>
 #include "main.h"
 
 /**
-  * main - Entry point
-  * @argc: The argument count
-  * @argv: The argument vector
-  *
-  * Return: ...
-  */
-int main(int argc, char **argv)
+ * cp - copies src to desinations
+ * @file_to: the destination file
+ * @file_from: the source file
+ *
+ * Return: integer
+ */
+int cp(char *file_to, char *file_from)
 {
-	if (argc != 3)
+	char *buffer[1024];
+	int td, fd, fr, fw;
+	int fc, ftc;
+
+	fd = open(file_from, O_RDONLY);
+	if (fd < 0)
+		return (98);
+
+	td = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	if (td < 0)
+		return (99);
+
+	fr = read(fd, buffer, 1024);
+	if (fr < 0)
+		return (98);
+
+	while (fr > 0)
 	{
-		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
-		exit(97);
+		fw = write(td, buffer, fr);
+		if (fw < 0)
+			return (99);
+		fr = read(fd, buffer, 1024);
+		if (fr < 0)
+			return (98);
 	}
 
-	copy_file(argv[1], argv[2]);
-	exit(0);
+	fc = close(fd);
+	if (fc < 0)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fc);
+		return (100);
+	}
+	ftc = close(td);
+	if (ftc < 0)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", ftc);
+		return (100);
+	}
+	return (0);
 }
 
 /**
-  * copy_file - ...
-  * @src: ...
-  * @dest: ...
-  *
-  * Return: ...
-  */
-void copy_file(const char *src, const char *dest)
+ * main - the main function
+ * @ac: the argument count
+ * @av: the argument vector
+ *
+ * Return: always 0
+ */
+int main(int ac, char **av)
 {
-	int ofd, tfd, readed;
-	char buff[1024];
+	int c;
 
-	ofd = open(src, O_RDONLY);
-	if (!src || ofd == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", src);
-		exit(98);
-	}
+	if (ac != 3)
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n"), exit(97);
 
-	tfd = open(dest, O_CREAT | O_WRONLY | O_TRUNC, 0664);
-	while ((readed = read(ofd, buff, 1024)) > 0)
+	c = cp(av[2], av[1]);
+	switch (c)
 	{
-		if (write(tfd, buff, readed) != readed || tfd == -1)
-		{
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", dest);
+		case (98):
+			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]);
+			exit(98);
+		case (99):
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
 			exit(99);
-		}
-	}
-
-	if (readed == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", src);
-		exit(98);
-	}
-
-	if (close(ofd) == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", ofd);
-		exit(100);
-	}
-
-	if (close(tfd) == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", tfd);
-		exit(100);
+		case (100):
+			exit(100);
+		default:
+			return (0);
 	}
 }
