@@ -1,39 +1,37 @@
-#include <stdio.h>
 #include "holberton.h"
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdlib.h>
+
 /**
- * create_file - Creates a file.
- * standard output.
- * @filename: Name of the file to create.
- * @text_content: NULL terminated string to write to the file.
- * Return: 1 on success, -1 on failure.
+ * read_textfile - read text and print it to POSIX
+ * @filename: name of file char
+ * @letters:number of letters to read size_t
+ * Return: read the file display it or error 0
  */
-int create_file(const char *filename, char *text_content)
+ssize_t read_textfile(const char *filename, size_t letters)
 {
-	int fd, lenght;
-	ssize_t res_write;
+	int fd, rd, wd;
+	char *buff = malloc(sizeof(char) * letters);
 
 	if (filename == NULL)
-		return (-1);
-	fd = open(filename, O_CREAT | O_WRONLY | O_TRUNC, 0600);
-	if (fd == -1)
-		return (-1);
-	if (text_content != NULL)
 	{
-		lenght = 0;
-		while (*(text_content + lenght) != '\0')
-			lenght++;
-		res_write = write(fd, text_content, lenght);
-		if (res_write == -1)
-		{
-			write(1, "fails", 6);
-			return (-1);
-		}
+		return (0);
+	}
+
+	fd = open(filename, O_RDWR);
+	if (fd == -1)
+	{
+		return (0);
+	}
+	rd = read(fd, buff, letters);
+	if (rd == -1)
+	{
+		return (0);
+	}
+	wd = write(STDOUT_FILENO, buff, rd);
+	if (wd == -1)
+	{
+		return (0);
 	}
 	close(fd);
-	return (1);
+	free(buff);
+	return (wd);
 }
